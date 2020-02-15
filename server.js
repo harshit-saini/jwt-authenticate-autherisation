@@ -45,7 +45,12 @@ app.listen(PORT, () => {
 
 // setting up the connection string 
 let connection_string;
-connection_string = "mongodb://localhost:27017/jwt-authenticate-autherisation";
+if (process.env.NODE_ENV === "production") {
+    connection_string = "mongodb+srv://jwt-authenticate-autherisation:XSZDhjkOX4q4WXbJ@cluster0-nusmc.mongodb.net/users?retryWrites=true&w=majority"
+} else {
+    connection_string = "mongodb://localhost:27017/jwt-authenticate-autherisation";
+}
+
 
 mongoose.connect(connection_string, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log("connected to database"))
