@@ -8,6 +8,9 @@ const cookieParser = require("cookie-parser");
 
 const indexRouter = require("./routes/indexRouter");
 const apiRouter = require("./routes/apiRouter");
+const protectRouter = require("./routes/protectRouter")
+
+const protect = require("./controller/protect")
 
 const app = express();
 
@@ -28,6 +31,9 @@ app.use(expressEjsLayouts);
 // using all routes
 app.use("/", indexRouter);
 app.use("/api", apiRouter);
+
+// protected routes
+app.use("/protected", protect.protect, protectRouter)
 
 // starting the app
 const PORT = process.env.PORT

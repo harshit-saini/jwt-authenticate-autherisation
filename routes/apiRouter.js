@@ -35,13 +35,19 @@ apiRouter.post("/signUp", async (req, res, next) => {
     newUser.password = undefined;
 
     // send res
-    res.status(200).json({
-        status: 'success',
-        token,
-        data: {
-            user: newUser
-        }
+
+    res.status(200).render("message", {
+        message: newUser
     })
+
+
+    // res.status(200).json({
+    //     status: 'success',
+    //     token,
+    //     data: {
+    //         user: newUser
+    //     }
+    // })
 
 
 })
@@ -151,9 +157,12 @@ apiRouter.get("/checkLogin", async (req, res, next) => {
     })
 
 
-
-
 })
+
+
+
+
+
 
 apiRouter.get("/logOut", (req, res, next) => {
     res.cookie("jwt", "logged Out", {
@@ -164,5 +173,8 @@ apiRouter.get("/logOut", (req, res, next) => {
         message: "you are logged out"
     })
 })
+
+
+
 
 module.exports = apiRouter;
