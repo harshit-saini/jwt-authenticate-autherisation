@@ -4,6 +4,7 @@ const ejs = require("ejs");
 const expressEjsLayouts = require("express-ejs-layouts");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
 
 const indexRouter = require("./routes/indexRouter");
 const apiRouter = require("./routes/apiRouter");
@@ -12,9 +13,11 @@ const app = express();
 
 // settings to serve static files
 app.use(express.static("public"))
+
+// 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }))
-
+app.use(cookieParser())
 
 // setting for the view engine
 app.set("views", "view");
